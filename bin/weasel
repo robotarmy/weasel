@@ -1,4 +1,3 @@
-if __FILE__ == $0
 require 'optparse'
 options = {}
 OptionParser.new do |opts|
@@ -36,4 +35,3 @@ OptionParser.new do |opts|
 
 end.parse!
 MemoryWatch.new(options).cycle
-end
