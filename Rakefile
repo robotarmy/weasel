@@ -4,9 +4,9 @@ require 'rake'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "weasel"
-    gem.summary = %Q{TODO: Weasel : The memory wacher}
-    gem.description = %Q{TODO: Dedicated to my dead cat and goodreads.com}
+    gem.name = "weasel-the-memory-watcher"
+    gem.summary = %Q{Weasel : The memory wacher}
+    gem.description = %Q{Dedicated to my dead cat and goodreads.com}
     gem.email = "github.com@robotarmyma.de"
     gem.homepage = "http://github.com/robotarmy/weasel"
     gem.authors = ["Curtis Schofield", "www.goodreads.com"]
