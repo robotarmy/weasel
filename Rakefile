@@ -4,13 +4,13 @@ require 'rake'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "memory_watch"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.name = "weasel"
+    gem.summary = %Q{TODO: Weasel : The memory wacher}
+    gem.description = %Q{TODO: Dedicated to my dead cat and goodreads.com}
     gem.email = "github.com@robotarmyma.de"
-    gem.homepage = "http://github.com/robotarmy/memory_watch"
-    gem.authors = ["Curtis Schofield"]
-    gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
+    gem.homepage = "http://github.com/robotarmy/weasel"
+    gem.authors = ["Curtis Schofield", "www.goodreads.com"]
+    gem.add_development_dependency "bundler", ">= 0"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new
@@ -37,8 +37,13 @@ rescue LoadError
     abort "RCov is not available. In order to run rcov, you must: sudo gem install spicycode-rcov"
   end
 end
+task :check_dependencies do
+  puts '..bundler'
+  `bundle check || bundle install`
+end
 
 task :test => :check_dependencies
+
 
 task :default => :test
 
@@ -47,7 +52,7 @@ Rake::RDocTask.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
 
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "memory_watch #{version}"
+  rdoc.title = "weasel #{version}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end

@@ -1,0 +1,39 @@
+#!/bin/sh
+exec ruby -x "$0" "$@"
+#!ruby -w
+require 'weasel'
+if __FILE__ == $0
+require 'optparse'
+options = {}
+OptionParser.new do |opts|
+  opts.banner = "Usage: #{__FILE__} [options]"
+
+  opts.on("--callback rubycode",String, "ruby code to exectute - has \#{pid} avalible") do |v|
+    options[:callback] = lambda {|pid|  # may be evil
+                          eval(v)
+                        }
+  end
+
+  opts.on("--num_over_marks N",String, "how many times the proces memory must go over to be a candidate") do |v|
+    options[:num_over_marks] = v.to_i
+  end
+
+  opts.on("--high_water_mb N", "the number of megabytes to be considered 'too much'") do |v|
+    options[:high_water_mb] = v.to_i
+  end
+
+  opts.on("--watch S",String, "process identifying string") do |v|
+    options[:watch] = v
+  end
+
+  opts.on("--num_cycles N", "total executions before exit") do |v|
+    options[:num_cycles] = v.to_i
+  end
+
+  opts.on("--delay F",Float, "delay between cycles") do |v|
+    options[:delay] = v
+  end
+
+end.parse!
+MemoryWatch.new(options).cycle
+end
