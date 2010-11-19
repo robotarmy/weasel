@@ -1,12 +1,12 @@
-#!/bin/sh
-#exec ruby -x "$0" "$@"
-#!ruby -w
-require 'weasel'
 if __FILE__ == $0
 require 'optparse'
 options = {}
 OptionParser.new do |opts|
   opts.banner = "Usage: #{__FILE__} [options]"
+   opts.on( '-h', '--help', 'Display this screen' ) do
+     puts opts
+     exit
+   end
 
   opts.on("--callback rubycode",String, "ruby code to exectute - has \#{pid} avalible") do |v|
     options[:callback] = lambda {|pid|  # may be evil
