@@ -1,5 +1,5 @@
 #!/bin/sh
-exec ruby -x "$0" "$@"
+#exec ruby -x "$0" "$@"
 #!ruby -w
 require 'weasel'
 if __FILE__ == $0
