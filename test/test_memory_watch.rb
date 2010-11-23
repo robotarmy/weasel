@@ -1,7 +1,7 @@
 require 'helper'
 class TestMemoryWatch < Test::Unit::TestCase
   def test_watches_self
-    cmd = %q{ruby ./lib/memory_watch.rb --delay 999999 --num_cycles 9900000099}
+    cmd = %q{ruby ./bin/weasel --delay 999999 --num_cycles 9900000099}
     pid = fork { %x{#{cmd}} }
     Process.detach(pid)
     wm = MemoryWatch.new(:watch => cmd , :high_water_mb => 0.01,:delay => 0.1, :num_cycles => 1)
@@ -22,7 +22,8 @@ class TestMemoryWatch < Test::Unit::TestCase
                          :num_over_marks => 0,
                          :callback => lambda {|pid|
                             test_magiggy = pid
-                         })
+                         },
+                         :callback_message => 'Message')
     wm.cycle
     assert { 
       wm.high_water_pids.include? test_magiggy
