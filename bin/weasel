@@ -13,6 +13,9 @@ OptionParser.new do |opts|
                           eval(v)
                         }
   end
+  opts.on("--callback_message string",String, "message to write when callback fired") do |v|
+    options[:callback_message] = v
+  end
 
   opts.on("--num_over_marks N",String, "how many times the proces memory must go over to be a candidate") do |v|
     options[:num_over_marks] = v.to_i
