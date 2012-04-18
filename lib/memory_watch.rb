@@ -4,12 +4,9 @@ class MemoryWatch
                 :delay,:num_cycles,:num_over_marks,:pids,:callback_message
 
   def initialize(options)
-    self.callback         = options[:callback]             || 
-                             lambda {|pid| p pid}
-    self.callback_message = (options[:callback_message]    || 
-                             "Callback Triggered").strip
-    self.watch_string     = (options[:watch]               || 
-                             "this poem is a pomme").strip
+    self.callback         = options[:callback]             || lambda {|pid| p pid}
+    self.callback_message = (options[:callback_message]    || "Callback Triggered").strip
+    self.watch_string     = Regexp.escape((options[:watch]               || "this poem is a pomme").strip)
     self.delay            = options[:delay]                || 60
     self.num_cycles       = options[:num_cycles]           || 3
     self.num_over_marks   = options[:num_over_marks]       || 2
