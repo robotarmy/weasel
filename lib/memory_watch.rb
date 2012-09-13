@@ -1,4 +1,3 @@
-
 class MemoryWatch
   attr_accessor :watch_string,:high_water_pids,:callback,:high_water_mb,
                 :delay,:num_cycles,:num_over_marks,:pids,:callback_message
@@ -6,7 +5,7 @@ class MemoryWatch
   def initialize(options)
     self.callback         = options[:callback]             || lambda {|pid| p pid}
     self.callback_message = (options[:callback_message]    || "Callback Triggered").strip
-    self.watch_string     = Regexp.escape((options[:watch]               || "this poem is a pomme").strip)
+    self.watch_string     = Regexp.escape((options[:watch] || "this poem is a pomme").strip)
     self.delay            = options[:delay]                || 60
     self.num_cycles       = options[:num_cycles]           || 3
     self.num_over_marks   = options[:num_over_marks]       || 2
@@ -40,7 +39,7 @@ class MemoryWatch
     _run.each { |pid|
       memory_usage = %x{ps -o rss= -p #{pid}}.to_i # KB
       if memory_usage > self.high_water_mb * 1024 # 750MB
-        puts "WARNING - Process #{pid} hit high water mark"
+        puts "WARNING - Process #{pid} hit high water mark at #{memory_usage / 1024}MB"
         self.high_water_pids[pid] ||= []
         self.high_water_pids[pid] << memory_usage
       end

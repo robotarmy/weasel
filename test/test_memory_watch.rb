@@ -20,7 +20,7 @@ class TestMemoryWatch < Test::Unit::TestCase
 
   def test_runs_callback
     test_magiggy = false
-    @wm = MemoryWatch.new(:watch => @cmd, 
+    @wm = MemoryWatch.new(:watch => @cmd,
                          :high_water_mb => 0,
                          :num_cycles => 1,
                          :delay => 0.01,
