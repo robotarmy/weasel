@@ -17,6 +17,10 @@ samples.
 
  You can also combine this nicely with services that use daemontools if you don't want to write complex restart / shutdown code.
 
+= Contributor
+
+BenSummers - 1.9 support and production friendly test support
+
 = Fin
 
 Copyright (c) 2010 Curtis Schofield. See LICENSE for details.
