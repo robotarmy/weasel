@@ -19,7 +19,7 @@ samples.
 
 = Contributor
 
-BenSummers - 1.9 support and production friendly test support
+Ben Somers - 1.9 support and production friendly test support
 
 = Fin
 
