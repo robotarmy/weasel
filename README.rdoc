@@ -1,21 +1,14 @@
 = Weasel
 
-Simple memory monitor - used in production with passenger to limit uptime of a service using excessive memory - as happens with ruby-1.8.7 on non ree projects
-
-see ./bin/weasel for all the arguments that it takes
+Simple memory monitor - used in production with passenger to limit uptime of a service using excessive memory - as happens with ruby-1.8.7 on non ree projects. See ./bin/weasel for all the arguments that it takes
 
 = Example
 
-weasel --callback "%x{kill -USR1 #{pid.to_s}}" --watch 'Rails:' --num-cycles 3 --num-over-marks 2 --callback-message 'sending SIGUSR1' --high-water-mb 440 --delay 1
+    weasel --callback "%x{kill -USR1 #{pid.to_s}}" --watch "Rails:" --num_cycles 3 --num_over_marks 2 --callback_message "sending SIGUSR1" --high_water_mb 440 --delay 1
 
- the above will send sigusr1 (graceful exit) to all the processes matching 'Rails' that run over 440MB 2 out of 3
-samples.  
+the above will send sigusr1 (graceful exit) to all the processes matching 'Rails' that run over 440MB 2 out of 3 samples. Samples are taken a total of 3 times with a delay of 1 second between them.  Put this in a cronjob to run every minute and you have a very simple, robust way to reap overmemory processes.
 
- Samples are taken a total of 3 times with a delay of 1 second between them.
-
- Put this in a cronjob to run every minute and you have a very simple, robust way to reap overmemory processes.
-
- You can also combine this nicely with services that use daemontools if you don't want to write complex restart / shutdown code.
+You can also combine this nicely with services that use daemontools if you don't want to write complex restart / shutdown code.
 
 = Contributor
 
