@@ -31,7 +31,7 @@ class MemoryWatch
     end
   end
   def _run
-    cmd = "ps x |grep '#{self.watch_string}' |grep -v grep | awk '{print $1}'"
+    cmd = "ps ax |grep '#{self.watch_string}' |grep -v grep | awk '{print $1}'"
     self.pids = %x{#{cmd}}.split()
     self.pids
   end
