@@ -4,7 +4,13 @@ Simple memory monitor - used in production with passenger to limit uptime of a s
 
 = Example
 
-    weasel --callback "%x{kill -USR1 #{pid.to_s}}" --watch "Rails:" --num_cycles 3 --num_over_marks 2 --callback_message "sending SIGUSR1" --high_water_mb 440 --delay 1
+    weasel --callback "%x{kill -USR1 #{pid.to_s}}" \
+    --watch "Rails:" \
+    --num_cycles 3 \
+    --num_over_marks 2 \
+    --callback_message "sending SIGUSR1" \
+    --high_water_mb 440 \
+    --delay 1
 
 the above will send sigusr1 (graceful exit) to all the processes matching 'Rails' that run over 440MB 2 out of 3 samples. Samples are taken a total of 3 times with a delay of 1 second between them.  Put this in a cronjob to run every minute and you have a very simple, robust way to reap overmemory processes.
 
